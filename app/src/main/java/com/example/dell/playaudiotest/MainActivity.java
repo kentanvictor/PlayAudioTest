@@ -17,6 +17,7 @@ import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private MediaPlayer mediaPlayer = new MediaPlayer();
+    //初始化創建MediaPlayer的實例
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         play.setOnClickListener(this);
         pause.setOnClickListener(this);
         stop.setOnClickListener(this);
+        //動態申請WRITE_EXTERNAL_STORAGE權限，讀取SD卡
         if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED)
         {
@@ -85,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.stop:
                 if(mediaPlayer.isPlaying())
                 {
-                    mediaPlayer.reset();//停止播放
+                    mediaPlayer.reset();//如果MEdiaPlayer正在播放音頻，則調用reset()方法將MediaPlayer重置為剛剛創建的狀態
                     initMediaPlayer();
                 }
                 break;
